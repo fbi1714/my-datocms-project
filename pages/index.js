@@ -61,6 +61,7 @@ export default function Home({ data }) {
       <Head>{renderMetaTags(data.blog.seo.concat(data.site.favicon))}</Head>
       {data.allPosts.map(blogPost => (
         <article key={blogPost.id}>
+          <Image data={blogPost.coverImage}/>
           <h6>{blogPost.title}</h6>
         </article>
       ))}
