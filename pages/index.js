@@ -21,7 +21,9 @@ query HomePage($limit: IntType) {
   allPosts(first: $limit) {
     id
     title
+    content
     excerpt
+    slug
     date
     author {
       name
@@ -64,6 +66,7 @@ export default function Home({ data }) {
         <article key={blogPost.id}>
           <Image data={blogPost.coverImage.responsiveImage} />
           <h6>{blogPost.title}</h6>
+          <p>{blogPost.content}<br /><br />{blogPost.date}</p>
         </article>
       ))}
     </div>
