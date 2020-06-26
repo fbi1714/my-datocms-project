@@ -43,15 +43,16 @@ query HomePage($limit: IntType) {
   }
 }`
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const data = await request({
     query: HOMEPAGE_QUERY,
-    variables: { limit: 10 },
-    preview: context.preview
+    variables: { limit: 10 }
   })
 
   return {
-    props: { data }
+    props: {
+      data
+    }
   }
 }
 
@@ -61,7 +62,7 @@ export default function Home({ data }) {
       <Head>{renderMetaTags(data.blog.seo.concat(data.site.favicon))}</Head>
       {data.allPosts.map(blogPost => (
         <article key={blogPost.id}>
-          <Image data={blogPost.coverImage}/>
+          <Image data={blogPost.coverImage.responsiveImage} />
           <h6>{blogPost.title}</h6>
         </article>
       ))}
